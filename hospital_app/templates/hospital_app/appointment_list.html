@@ -1,0 +1,40 @@
+<{% extends 'hospital_app/base.html' %}
+
+{% block content %}
+
+<h2 class="mb-3">📅 Appointment List</h2>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-primary">
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.patient.name }}</td>
+
+            <td>
+                <span class="badge bg-success">
+                    {{ appointment.doctor_name }}
+                </span>
+            </td>
+
+            <td>{{ appointment.appointment_date }}</td>
+
+            <td>{{ appointment.appointment_time }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

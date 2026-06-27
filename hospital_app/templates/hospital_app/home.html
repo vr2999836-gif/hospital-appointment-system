@@ -1,0 +1,35 @@
+{% extends 'hospital_app/base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">📊 Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body text-center">
+                <h4>Total Patients</h4>
+                <h1>{{ total_patients }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body text-center">
+                <h4>Total Appointments</h4>
+                <h1>{{ total_appointments }}</h1>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mt-4">
+    <a href="/patients/" class="btn btn-primary">👨‍⚕️ Patient List</a>
+    <a href="/appointments/" class="btn btn-success">📅 Appointment List</a>
+    <a href="/admin/" class="btn btn-dark">⚙️ Admin Panel</a>
+</div>
+
+{% endblock %}

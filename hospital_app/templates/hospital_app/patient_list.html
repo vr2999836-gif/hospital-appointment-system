@@ -1,0 +1,94 @@
+{% extends 'hospital_app/base.html' %}
+
+{% block content %}
+
+<div class="card shadow-lg border-0">
+
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">👨‍⚕️ Patient List</h4>
+    </div>
+
+    <div class="card-body">
+
+        <!-- Search Box -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <form method="GET" class="d-flex">
+                    <input
+                        type="text"
+                        name="q"
+                        class="form-control me-2"
+                        placeholder="🔍 Search patient name..."
+                        value="{{ request.GET.q }}"
+                    >
+                    <button type="submit" class="btn btn-primary">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Patient Table -->
+        <table class="table table-hover table-bordered align-middle">
+
+            <thead class="table-primary">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Problem</th>
+                    <th width="220">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for patient in patients %}
+
+                <tr>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.gender }}</td>
+                    <td>{{ patient.phone }}</td>
+                    <td>{{ patient.problem }}</td>
+
+                    <td>
+                        <a href="/patient/{{ patient.id }}/"
+                           class="btn btn-info btn-sm">
+                            👁️ View
+                        </a>
+
+                        <a href="/patient/edit/{{ patient.id }}/"
+                           class="btn btn-warning btn-sm">
+                            ✏️ Edit
+                        </a>
+
+                        <a href="/patient/delete/{{ patient.id }}/"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure you want to delete this patient?')">
+                            🗑 Delete
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6" class="text-center text-muted">
+                        No patients found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
